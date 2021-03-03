@@ -1,0 +1,67 @@
+:root {
+    --primary-dark: #151f1f;
+    --primary: rgba(66,185,131,1);
+    --primary-semisolid: rgba(66,185,131,0.7);
+    --primary-semitransparent: rgba(66,185,131,0.5);
+    --primary-transparent: rgba(66,185,131,0.3);
+    --primary-verytransparent: rgba(66,185,131,0.15);
+    --primary-supertransparent: rgba(66,185,131,0.01);
+    --primary-light: rgb(225,250,225);
+    --primary-light-semisolid: rgba(225,250,225,0.7);
+    --primary-light-semitransparent: rgba(225,250,225,0.5);
+    --primary-light-transparent: rgba(225,250,225,0.3);
+    --primary-light-verytransparent: rgba(225,250,225,0.15);
+    --primary-light-supertransparent: rgba(225,250,225,0.01);
+    --secondary: rgb(60,150,155);
+    --secondary-semisolid: rgba(60,150,155, 0.7);
+    --secondary-semitransparent: rgba(60,150,155, 0.5);
+    --secondary-transparent: rgba(60,150,155, 0.3);
+    --secondary-verytransparent: rgba(60,150,155, 0.15);
+    --secondary-supertransparent: rgba(60,150,155, 0.01);
+    --secondary-deep: rgb(66,120,185);
+    --secondary-deep-semisolid: rgba(66,120,185, 0.7);
+    --secondary-deep-semitransparent: rgba(66,120,185, 0.5);
+    --secondary-deep-transparent: rgba(66,120,185, 0.3);
+    --secondary-deep-verytransparent: rgba(66,120,185, 0.15);
+    --secondary-deep-supertransparent: rgba(66,120,185, 0.01);
+    --secondary-light: rgba(200,235,240);
+    --secondary-light-semisolid: rgba(200,235,240, 0.7);
+    --secondary-light-semitransparent: rgba(200,235,240, 0.5);
+    --secondary-light-transparent: rgba(200,235,240, 0.3);
+    --secondary-light-verytransparent: rgba(200,235,240, 0.15);
+    --secondary-light-supertransparent: rgba(200,235,240, 0.01);
+    --secondary-bright: rgb(81,217,225);
+    --secondary-bright-semisolid: rgba(81,217,225, 0.7);
+    --secondary-bright-semitransparent: rgba(81,217,225, 0.5);
+    --secondary-bright-transparent: rgba(81,217,225, 0.3);
+    --secondary-bright-verytransparent: rgba(81,217,225, 0.15);
+    --secondary-bright-supertransparent: rgba(81,217,225, 0.01);
+    --secondary-dark: rgb(14,26,26);
+    --secondary-dark-semisolid: rgba(14,26,26, 0.7);
+    --secondary-dark-semitransparent: rgba(14,26,26, 0.5);
+    --secondary-dark-transparent: rgba(14,26,26, 0.3);
+    --secondary-dark-verytransparent: rgba(14,26,26, 0.15);
+    --secondary-dark-supertransparent: rgba(14,26,26, 0.01);
+    --secondary-dark: #0e1a1a;
+    --grey-transparent: rgba(190,190,190,0.3);
+    --grey-supertransparent: rgba(190,190,190,0.01);
+}
+
+/* Named Content Variables */
+:root {
+    --font-light: var(--secondary-light);
+    --font-dark: var(--secondary-dark);
+    --bg-main-dark: var(--secondary-dark);
+    --link-main: var(--primary);
+    --link-alt: var(--primary-light);
+    --link-hover: var(--primary-light-semisolid);
+    --link-nav: var(--primary-light);
+    --border-light-hard: var(--primary-light);
+    --border-light-soft: var(--primary-light-semisolid);
+    --border-light-supersoft: var(--grey-supertransparent);
+    --border-dark-hard: var(--primary-dark);
+    --border-dark-soft: var(--primary-dark-semisolid);
+    --border-dark-supersoft: var(--secondary-dark-verytransparent);
+    --footer-bg-light: var(--primary-light-semisolid);
+    --app-view-background: var(--secondary-deep-verytransparent);
+}
