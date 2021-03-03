@@ -1,5 +1,4 @@
-# vue.ts.sandbox
-
+# DurbanTech.com Website
 ## Project setup
 ```
 npm install
