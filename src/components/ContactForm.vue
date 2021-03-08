@@ -3,6 +3,12 @@
 
       <!-- Netlify Form Submission Handling -->
       <input type="hidden" name="form-name" value="form-contact-main" />
+      <input type="hidden" name="contact-name" />
+      <input type="hidden" name="contact-preferred" />
+      <input type="hidden" name="contact-phone" />
+      <input type="hidden" name="contact-email" />
+      <input type="hidden" name="contact-other" />
+      <input type="hidden" name="contact-message" />
       <input type="hidden" name="form-content" />
 
       <!-- Name Input -->
@@ -217,6 +223,12 @@ const ContactForm = Vue.extend({
       const method = 'POST'
       const body = this.encode({
         'form-name': 'form-contact-main',
+        'contact-name': this.form.name,
+        'contact-preferred': this.preferredContactString,
+        'contact-phone': this.phoneContactString,
+        'contact-email': this.emailContactString,
+        'contact-other': this.socialContactString,
+        'contact-message': this.form.message,
         'form-content': this.contactFormString
       })
       fetch('/', {
@@ -336,12 +348,12 @@ const ContactForm = Vue.extend({
     phoneContactString () {
       const prefStatus = this.form.contact.preferred.phone
       if (!this.phoneIsValid) return ''
-      return `${prefStatus === true ? '*' : ''}Phone: ${this.form.contact.phone}`
+      return `${prefStatus === true ? '(*) ' : ''}${this.form.contact.phone}`
     },
     emailContactString () {
       const prefStatus = this.form.contact.preferred.email
       if (!this.emailIsValid) return ''
-      return `${prefStatus === true ? '*' : ''}Email: ${this.form.contact.email}`
+      return `${prefStatus === true ? '(*) ' : ''}${this.form.contact.email}`
     },
     socialContactString () {
       const prefStatus = this.form.contact.preferred.social
@@ -349,13 +361,13 @@ const ContactForm = Vue.extend({
       const namedService = this.form.contact.social.namedService
       const name = this.form.contact.social.name
       if (!this.socialIsValid) return ''
-      return `${prefStatus === true ? '*' : ''}Service Name: ${service !== 'other' ? service : namedService}\nService ID: ${name}`
+      return `${prefStatus === true ? '(*) ' : ''}Service Name: ${service !== 'other' ? service : namedService} - Service ID: ${name}`
     },
     preferredContactString () {
       const socialPrefStatus = this.form.contact.preferred.social
       const emailPrefStatus = this.form.contact.preferred.email
       const phonePrefStatus = this.form.contact.preferred.phone
-      let preferredString = 'Preferred: '
+      let preferredString = ''
       if (!socialPrefStatus && !emailPrefStatus && !phonePrefStatus) return preferredString + 'None'
       if (socialPrefStatus) preferredString += 'Social'
 
@@ -379,11 +391,11 @@ const ContactForm = Vue.extend({
       const message = this.form.message
 
       return `
-Name: ${name.length > 0 ? name : 'None given'}
-${prefString}
-${phoneString.length > 0 ? phoneString : 'No phone'}
-${emailString.length > 0 ? emailString : 'No email'}
-${socialString.length > 0 ? socialString : 'No social'}
+Name: ${name.length > 0 ? name : 'None'}
+Preferred: ${prefString}
+Phone: ${phoneString.length > 0 ? phoneString : 'None'}
+Email: ${emailString.length > 0 ? emailString : 'None'}
+Other: ${socialString.length > 0 ? socialString : 'None'}
 Message: ${message.length > 0 ? message : 'None'}
 `
     }
