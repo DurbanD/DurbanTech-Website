@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-        <img alt="Durban Technology" src="../assets/Dtech_Logo_Small_Green_Silver.png">
+        <router-link to='/' id='logo-link'><img alt="Durban Technology" src="../assets/Dtech_Logo_Small_Green_Silver.png"></router-link>
         <div id="navlinks">
             <router-link class="navlink" to="/" id="nav-home">Home</router-link>
             <router-link class="navlink" to="/about" id="nav-about">About</router-link>
@@ -14,6 +14,7 @@
 img {
   max-height: 50px;
   background: var(--lightgreen-semitransparent);
+  margin: 0;
 }
 #nav {
   display: flex;
@@ -39,6 +40,10 @@ img {
   padding: 10px 25px;
   list-style: none;
   text-decoration: none;
+}
+#logo-link {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #navlinks {
