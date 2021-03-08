@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" action="">
+    <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" data-netlify=true method="post" action="">
 
       <!-- Name Input -->
       <FormGroup v-model="form.name"
@@ -217,7 +217,7 @@ const ContactForm = Vue.extend({
         '/',
         this.encode({
           'form-name': 'form-contact-main',
-          'form-content': this.contactFormString
+          ...this.contactFormString
         }),
         axiosConfig
       )
