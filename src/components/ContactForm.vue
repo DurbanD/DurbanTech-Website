@@ -157,7 +157,6 @@ import { Vue } from 'vue-property-decorator'
 import FormGroup from '../components/FormGroup'
 import PreferredContactCheckBox from '../components/PreferredContactCheckBox'
 import InfoHover from '../components/InfoHover'
-import axios from 'axios'
 
 const ContactForm = Vue.extend({
   data () {
@@ -210,19 +209,6 @@ const ContactForm = Vue.extend({
         key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
       ).join('&')
     },
-    postFormDataWithAxios () {
-      const axiosConfig = {
-        header: { 'Content-Type': 'application/x-www-form-urlencoded' }
-      }
-      axios.post(
-        '/',
-        this.encode({
-          'form-name': 'form-contact-main',
-          content: this.contactFormString
-        }),
-        axiosConfig
-      )
-    },
     postFormDataWithFetch () {
       const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
       const method = 'POST'
@@ -230,7 +216,6 @@ const ContactForm = Vue.extend({
         'form-name': 'form-contact-main',
         'form-content': this.contactFormString
       })
-
       fetch('/', {
         method: method,
         headers: headers,
