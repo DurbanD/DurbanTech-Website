@@ -217,10 +217,24 @@ const ContactForm = Vue.extend({
         '/',
         this.encode({
           'form-name': 'form-contact-main',
-          ...this.contactFormString
+          content: this.contactFormString
         }),
         axiosConfig
       )
+    },
+    postFormDataWithFetch () {
+      const headers = { 'Content-Type': 'application/x-www-form-urlencoded' }
+      const method = 'POST'
+      const body = this.encode({
+        'form-name': 'form-contact-main',
+        formContent: this.contactFormString
+      })
+
+      fetch('/', {
+        method: method,
+        headers: headers,
+        body: body
+      }).catch(err => alert(err))
     },
     onSubmit () {
       this.setFormErrorStatus()
@@ -228,7 +242,7 @@ const ContactForm = Vue.extend({
         console.log('Valid Form Submission')
         this.formSubmitted = true
         this.$emit('form-submit-success')
-        this.postFormDataWithAxios()
+        this.postFormDataWithFetch()
       } else if (!this.formIsValid) {
         console.log('Invalid Form Submission')
       }
