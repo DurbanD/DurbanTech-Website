@@ -52,7 +52,7 @@
         id="phone-contact-preferred"
         v-model="form.contact.preferred.phone"
         v-if="!formSubmitted && contactSelect.phone"
-        label="Set as preferred contact"
+        label="Set phone as preferred contact"
         name="phone" />
         <FormGroup v-model="form.contact.phone"
         v-if="!formSubmitted && contactSelect.phone"
@@ -71,7 +71,7 @@
         id="email-contact-preferred"
         v-model="form.contact.preferred.email"
         v-if="!formSubmitted && contactSelect.email"
-        label="Set as preferred contact"
+        label="Set email as preferred contact"
         name="email" />
         <FormGroup v-model="form.contact.email"
         v-if="!formSubmitted && contactSelect.email"
@@ -90,7 +90,7 @@
         id="social-contact-preferred"
         v-model="form.contact.preferred.social"
         v-if="!formSubmitted && contactSelect.other"
-        label="Set as preferred contact"
+        label="Set social as preferred contact"
         name="social"  />
         <div id="social-contact-form">
           <div id="service-select">
@@ -156,6 +156,7 @@ import { Vue } from 'vue-property-decorator'
 import FormGroup from '../components/FormGroup'
 import PreferredContactCheckBox from '../components/PreferredContactCheckBox'
 import InfoHover from '../components/InfoHover'
+import axios from 'axios'
 
 const ContactForm = Vue.extend({
   data () {
@@ -203,16 +204,33 @@ const ContactForm = Vue.extend({
     }
   },
   methods: {
+    encode (data) {
+      return Object.keys(data).map(
+        key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      ).join('&')
+    },
+    postFormDataWithAxios () {
+      const axiosConfig = {
+        header: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      }
+      axios.post(
+        '/',
+        this.encode({ 'form-contact': this.contactFormString }),
+        axiosConfig
+      )
+    },
     onSubmit () {
+      this.setFormErrorStatus()
       if (this.formIsValid) {
         console.log('Valid Form Submission')
         this.formSubmitted = true
         this.$emit('form-submit-success')
+        this.postFormDataWithAxios()
       } else if (!this.formIsValid) {
         console.log('Invalid Form Submission')
       }
       console.log(this.form)
-      this.setFormErrorStatus()
+      console.log(this.contactFormString)
     },
     selectContact (event) {
       const id = event.srcElement.id
@@ -309,6 +327,60 @@ const ContactForm = Vue.extend({
     contactIsValid () {
       if (this.socialIsValid || this.phoneIsValid || this.emailIsValid) return true
       return false
+    },
+    phoneContactString () {
+      const prefStatus = this.form.contact.preferred.phone
+      if (!this.phoneIsValid) return ''
+      return `${prefStatus === true ? '*' : ''}Phone: ${this.form.contact.phone}`
+    },
+    emailContactString () {
+      const prefStatus = this.form.contact.preferred.email
+      if (!this.emailIsValid) return ''
+      return `${prefStatus === true ? '*' : ''}Email: ${this.form.contact.email}`
+    },
+    socialContactString () {
+      const prefStatus = this.form.contact.preferred.social
+      const service = this.form.contact.social.service
+      const namedService = this.form.contact.social.namedService
+      const name = this.form.contact.social.name
+      if (!this.socialIsValid) return ''
+      return `${prefStatus === true ? '*' : ''}Service Name: ${service !== 'other' ? service : namedService}\nService ID: ${name}`
+    },
+    preferredContactString () {
+      const socialPrefStatus = this.form.contact.preferred.social
+      const emailPrefStatus = this.form.contact.preferred.email
+      const phonePrefStatus = this.form.contact.preferred.phone
+      let preferredString = 'Preferred: '
+      if (!socialPrefStatus && !emailPrefStatus && !phonePrefStatus) return preferredString + 'None'
+      if (socialPrefStatus) preferredString += 'Social'
+
+      if (emailPrefStatus) {
+        if (socialPrefStatus) preferredString += ', '
+        preferredString += 'Email'
+      }
+
+      if (phonePrefStatus) {
+        if (emailPrefStatus || socialPrefStatus) preferredString += ', '
+        preferredString += 'Phone'
+      }
+      return preferredString
+    },
+    contactFormString () {
+      const prefString = this.preferredContactString
+      const socialString = this.socialContactString
+      const emailString = this.emailContactString
+      const phoneString = this.phoneContactString
+      const name = this.form.name
+      const message = this.form.message
+
+      return `
+Name: ${name.length > 0 ? name : 'None given'}
+${prefString}
+${phoneString.length > 0 ? phoneString : 'No phone'}
+${emailString.length > 0 ? emailString : 'No email'}
+${socialString.length > 0 ? socialString : 'No social'}
+Message: ${message.length > 0 ? message : 'None'}
+`
     }
   },
   components: {
