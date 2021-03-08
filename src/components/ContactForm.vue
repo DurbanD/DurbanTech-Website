@@ -1,7 +1,10 @@
 <template>
     <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" data-netlify=true method="post" action="">
+
+      <!-- Netlify Form Submission Handling -->
       <input type="hidden" name="form-name" value="form-contact-main" />
       <input type="hidden" name="form-content" />
+
       <!-- Name Input -->
       <FormGroup v-model="form.name"
       v-if="!formSubmitted"
