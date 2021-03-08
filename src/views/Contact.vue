@@ -2,7 +2,7 @@
   <div class="contact">
     <div class="contact-head" v-if="!formSubmitted">
       <h1>Contact</h1>
-      <p v-if="!isLessThan700Height">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, magnam?</p>
+      <p v-if="!isLessThan700Height">Use the form below or email DurbanTech at admin@durbantech.com</p>
     </div>
     <ContactForm v-on:form-submit-success="formSubmitted = true" />
   </div>
