@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="onSubmit" id="contact-form" action="">
+    <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" action="">
 
       <!-- Name Input -->
       <FormGroup v-model="form.name"
@@ -215,7 +215,10 @@ const ContactForm = Vue.extend({
       }
       axios.post(
         '/',
-        this.encode({ 'form-contact': this.contactFormString }),
+        this.encode({
+          'form-name': 'form-contact-main',
+          'form-content': this.contactFormString
+        }),
         axiosConfig
       )
     },
@@ -229,7 +232,6 @@ const ContactForm = Vue.extend({
       } else if (!this.formIsValid) {
         console.log('Invalid Form Submission')
       }
-      console.log(this.form)
       console.log(this.contactFormString)
     },
     selectContact (event) {
