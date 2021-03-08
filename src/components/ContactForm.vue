@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" data-netlify=true method="post" action="">
-
+      <input type="hidden" name="form-name" value="form-contact-main" />
       <!-- Name Input -->
       <FormGroup v-model="form.name"
       v-if="!formSubmitted"

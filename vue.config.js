@@ -12,6 +12,7 @@ module.exports = {
           // List of routes to prerender
           [ '/'],
           [ '/contact'],
+          [ '/#/contact' ],
           {
             // options
           }
