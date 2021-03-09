@@ -1,8 +1,8 @@
 <template>
   <div class="contact">
-    <div class="contact-head" v-if="!formSubmitted">
-      <h1>Contact</h1>
-      <p v-if="!isLessThan700Height">Use the form below or email DurbanTech at admin@durbantech.com. We will get back to you as soon as we can!</p>
+    <div id="contact-head" v-if="!formSubmitted">
+      <h1 id='contact-container-headText'>{{ headerTextLarge }}</h1>
+      <p id='contact-container-subText'>{{ headerTextSmall }}</p>
     </div>
     <ContactForm v-on:form-submit-success="formSubmitted = true" />
   </div>
@@ -15,21 +15,16 @@ import ContactForm from '@/components/ContactForm.vue'
 @Component({
   data () {
     return {
-      formSubmitted: false
+      formSubmitted: false,
+      headerTextLarge: 'Contact',
+      headerTextSmall: 'Use the form below or email DurbanTech at admin@durbantech.com. We will get back to you as soon as we can!'
     }
   },
   components: {
     ContactForm
   },
   computed: {
-    isLessThan700Height () {
-      if (document.body.clientHeight < 700) return true
-      return false
-    },
-    isLessThan500Height () {
-      if (document.body.clientHeight < 500) return true
-      return false
-    }
+    // Computed Values
   }
 })
 export default class Contact extends Vue {}
@@ -45,7 +40,7 @@ export default class Contact extends Vue {}
   margin: 0;
   padding: 0;
 }
-.contact-head {
+#contact-head {
   margin: 0.5rem;
   color: var(--font-light);
 }
@@ -55,26 +50,23 @@ p {
   margin-bottom: 0;
 }
 h1 {
-  margin:0;
+  margin: 0.5rem 0;
   padding:0;
-  margin-bottom: 0.5rem;
 }
 
 @media screen and (max-height: 850px) {
-  p {
-    display: none
+  #contact-container-subText {
+    display: none;
   }
-  h1 {
-    margin-bottom: 0;
+  #contact-container-headText {
+    margin: 0;
+    padding: 0;
     font-size: 16pt;
   }
 }
 @media screen and (max-height: 750px) {
-  /* h1 {
+  #contact-head {
     display: none;
-  } */
-  .contact-head {
-    margin: 0 0 0.5rem 0;
   }
 }
 </style>

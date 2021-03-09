@@ -1,6 +1,6 @@
 <template>
   <div class="info-hover" v-on:mouseover="mouseHover" v-on:mouseout="mouseLeavesBox">
-    <p id="info-hover-main-display">?</p>
+    <p id="info-hover-main-display">{{ iconInnerText }}</p>
     <p id="info-hover-text" v-if="showInfoText" :style="{ left:`${innerTextLeftPos}px`, top:`${innerTextTopPos}px` }" >{{ hoverText }}</p>
   </div>
 </template>
@@ -12,6 +12,7 @@ const InfoHover = Vue.extend({
     return {
       hoverTextID: 'hover-text-container',
       innerHoverTextID: 'hover-inner-text',
+      iconInnerText: '?',
       innerTextTopPos: 0,
       innerTextLeftPos: 0,
       showInfoText: false

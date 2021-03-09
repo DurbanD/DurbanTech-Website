@@ -25,7 +25,7 @@
       <!-- Contact Selector (Phone | Email | Other) -->
       <div id="contact-selector-main" v-if="!formSubmitted">
         <div id="contact-selector-head">
-          <h3><span v-if="formErrorStatus.contact" class="form-error-span">*</span>Contact Type</h3>
+          <h3><span v-if="formErrorStatus.contact" class="form-error-span">{{ errorMarkerText }}</span>{{ contactSelectHead }}</h3>
           <InfoHover hoverText="1 or more required" />
         </div>
         <div id="contact-selector-container">
@@ -35,7 +35,7 @@
           v-on:click="selectContact"
           :class="{ activeSelector: contactSelect.phone, validatedInput : phoneIsValid }">
             <span v-if="phoneIsValid" class="contact-input-confirmed">&#10003;</span>
-            Phone
+            {{ contactSelectTextPhone }}
           </div>
           <div
           id="email-selector"
@@ -43,7 +43,7 @@
           v-on:click="selectContact"
           :class="{ activeSelector: contactSelect.email, validatedInput : emailIsValid }">
             <span v-if="emailIsValid" class="contact-input-confirmed">&#10003;</span>
-            Email
+            {{ contactSelectTextEmail }}
           </div>
           <div
           id="other-selector"
@@ -51,7 +51,7 @@
           v-on:click="selectContact"
           :class="{ activeSelector: contactSelect.other, validatedInput : socialIsValid }">
           <span v-if="socialIsValid" class="contact-input-confirmed">&#10003;</span>
-            Other
+            {{ contactSelectTextOther }}
           </div>
         </div>
       </div>
@@ -152,11 +152,11 @@
 
       <!-- Submit Area & Button -->
       <div v-if="!formSubmitted" class="contact-group" id="submit-btn-group">
-        <button type="submit" class="btn" id="submit-btn">Send</button>
+        <button type="submit" class="btn" id="submit-btn">{{ submitBtnText }}</button>
       </div>
       <div v-if="formSubmitted" id="form-submit-success">
-        <h1 id="form-success-head">Thanks!</h1>
-        <p id="form-success-body">Form successfully submitted.</p>
+        <h1 id="form-success-head">{{ successHead }}</h1>
+        <p id="form-success-body">{{ successBody }}</p>
       </div>
     </form>
 </template>
@@ -209,7 +209,16 @@ const ContactForm = Vue.extend({
         email: false,
         other: false,
         social: false
-      }
+      },
+      contactSelectHead: 'Contact Type',
+      contactSelectTextPhone: 'Phone',
+      contactSelectTextEmail: 'Email',
+      contactSelectTextOther: 'Other',
+      checkmarkConfirm: '&#10003;',
+      errorMarkerText: '*',
+      submitBtnText: 'Send',
+      successHead: 'Thanks!',
+      successBody: 'Form successfully submitted.'
     }
   },
   methods: {

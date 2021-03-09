@@ -15,7 +15,7 @@
 
     <div id="form-option-container" v-if="isOptionSelect">
       <select v-if="isOptionSelect" id="form-select" :value="value" @change="$emit('input', $event.target.value)">
-        <option value="" selected>Choose Service</option>
+        <option value="" selected>{{ optionSelectText }}</option>
         <option v-for="opt in optionList" id="form-select-options" :key="opt.value" :value="opt.value">{{ opt.name }}</option>
       </select>
       <p v-if="errorStatus" class="form-error">{{ errorMessage }}</p>
@@ -37,6 +37,7 @@ import { Vue } from 'vue-property-decorator'
 const FormGroup = Vue.extend({
   data () {
     return {
+      optionSelectText: 'Choose Service'
     }
   },
   props: {

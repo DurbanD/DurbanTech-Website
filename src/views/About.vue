@@ -1,8 +1,8 @@
 <template>
   <div class="about">
     <div id="about-head">
-      <h1>About Durban Technology</h1>
-      <p>DurbanTech offers a wide range of services to clients both near and far. Below you will see an overview of said services. Click each item or visit our contact page for more information.</p>
+      <h1>{{ headTextLarge }}</h1>
+      <p>{{ headTextSmall }} </p>
     </div>
     <h2 id="service-head">Services</h2>
     <div id="about-boxes">
@@ -27,6 +27,8 @@ import AboutBox from '../components/AboutBox'
 const About = Vue.extend({
   data () {
     return {
+      headTextLarge: 'About Durban Technology',
+      headTextSmall: 'DurbanTech offers a wide range of services to clients both near and far. Below you will see an overview of said services. Click each item or visit our contact page for more information.',
       content: {
         left: {
           head: 'Local',

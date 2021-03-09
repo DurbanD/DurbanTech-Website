@@ -5,9 +5,9 @@
     </div>
     <div class="home-content">
       <div class="home-blurb">
-        <h3>Welcome to Durban Technology!</h3>
+        <h3>{{ welcomeHead }} </h3>
         <p class="home-blurb-paragraph">
-          Founded in 2019, DurbanTech is proud to serve our clients locally and nationally. Based out of Oklahoma City, Oklahoma, DurbanTech is commited to providing the best service for the lowest cost for our community, so that you can worry about what is really important. From hardware repair to custom software development, whether you are a small business or an individual, DurbanTech can help make sure your equipment and software is fast, efficient, and exactly what you need.
+          {{ mainParagraph1 }}
         </p>
         <p class="info-blurb">
           For more information, visit our <router-link to="/about" class="info-blurb-link">about</router-link> section, or <router-link to="/contact" class="info-blurb-link">contact</router-link> DurbanTech for more information.
@@ -16,6 +16,21 @@
     </div>
   </div>
 </template>
+
+<script>
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  data () {
+    return {
+      welcomeHead: 'Welcome to Durban Technology!',
+      mainParagraph1: 'Founded in 2019, DurbanTech is proud to serve our clients locally and nationally. Based out of Oklahoma City, Oklahoma, DurbanTech is commited to providing the best service for the lowest cost for our community, so that you can worry about what is really important. From hardware repair to custom software development, whether you are a small business or an individual, DurbanTech can help make sure your equipment and software is fast, efficient, and exactly what you need.',
+      mainFooter: `For more information, visit our ${<router-link to="/about" class="info-blurb-link">about</router-link>} section, or <router-link to="/contact" class="info-blurb-link">contact</router-link> DurbanTech for more information.`
+    }
+  }
+})
+export default class Home extends Vue {}
+</script>
 
 <style scoped>
 img {
