@@ -1,5 +1,6 @@
 <template>
-    <form @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" data-netlify=true method="post" action="">
+  <div id="form-container">
+    <form v-if="!formSubmitted" @submit.prevent="onSubmit" id="contact-form" name="form-contact-main" data-netlify=true method="post" action="">
 
       <!-- Netlify Form Submission Handling -->
       <input type="hidden" name="form-name" value="form-contact-main" />
@@ -23,7 +24,7 @@
       v-bind:errorMessage="formErrorMsg.name" />
 
       <!-- Contact Selector (Phone | Email | Other) -->
-      <div id="contact-selector-main" v-if="!formSubmitted">
+      <div id="contact-selector-main">
         <div id="contact-selector-head">
           <h3><span v-if="formErrorStatus.contact" class="form-error-span">{{ errorMarkerText }}</span>{{ contactSelectHead }}</h3>
           <InfoHover hoverText="1 or more required" />
@@ -57,7 +58,7 @@
       </div>
 
       <!-- Phone Contact Input -->
-      <div class="contactContainer" v-if="!formSubmitted && contactSelect.phone">
+      <div class="contactContainer" v-if="contactSelect.phone">
         <PreferredContactCheckBox
         id="phone-contact-preferred"
         v-model="form.contact.preferred.phone"
@@ -76,7 +77,7 @@
       </div>
 
       <!-- Email Contact Input -->
-      <div class="contactContainer" v-if="!formSubmitted && contactSelect.email">
+      <div class="contactContainer" v-if="contactSelect.email">
         <PreferredContactCheckBox
         id="email-contact-preferred"
         v-model="form.contact.preferred.email"
@@ -95,7 +96,7 @@
       </div>
 
       <!-- Social/Other Contact Input -->
-      <div class="contactContainer" v-if="!formSubmitted && contactSelect.other">
+      <div class="contactContainer" v-if="contactSelect.other">
         <PreferredContactCheckBox
         id="social-contact-preferred"
         v-model="form.contact.preferred.social"
@@ -141,7 +142,6 @@
 
       <!-- Message Input -->
       <FormGroup v-model="form.message"
-      v-if="!formSubmitted"
       label="Message"
       type="textarea"
       placeholder="Your message here..."
@@ -151,14 +151,15 @@
       v-bind:errorMessage="formErrorMsg.message" />
 
       <!-- Submit Area & Button -->
-      <div v-if="!formSubmitted" class="contact-group" id="submit-btn-group">
+      <div class="contact-group" id="submit-btn-group">
         <button type="submit" class="btn" id="submit-btn">{{ submitBtnText }}</button>
       </div>
-      <div v-if="formSubmitted" id="form-submit-success">
-        <h1 id="form-success-head">{{ successHead }}</h1>
-        <p id="form-success-body">{{ successBody }}</p>
-      </div>
     </form>
+    <div v-if="formSubmitted" id="form-submit-success">
+      <h1 id="form-success-head">{{ successHead }}</h1>
+      <p id="form-success-body">{{ successBody }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -419,8 +420,12 @@ export default ContactForm
 </script>
 
 <style scoped>
-#contact-form {
-    width: 100%;
+#form-container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#contact-form, #form-submit-success {
     background: radial-gradient(150% 80%, var(--primary-light-semitransparent), var(--primary-light-transparent)), var(--grey-transparent);
     border: 2px solid black;
     border-radius: 10px;

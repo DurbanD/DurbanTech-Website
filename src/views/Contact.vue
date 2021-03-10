@@ -61,7 +61,7 @@ h1 {
   #contact-container-headText {
     margin: 0;
     padding: 0;
-    font-size: 16pt;
+    font-size: 18pt;
   }
 }
 @media screen and (max-height: 750px) {

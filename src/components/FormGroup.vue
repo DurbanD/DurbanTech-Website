@@ -89,7 +89,8 @@ export default FormGroup
     margin: 0;
     font-weight: bold;
 }
-.form-input,textarea {
+.form-input,
+textarea {
     width: 90%;
     border: 1px solid black;
     margin: 1rem 0 0 1rem;
@@ -116,13 +117,8 @@ export default FormGroup
     overflow: auto;
     padding: 8px;
 }
-.form-error {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 3px 10px;
-  color: red;
-}
-.form-label-container, #form-option-container {
+.form-label-container,
+#form-option-container {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -130,16 +126,22 @@ export default FormGroup
   justify-content: space-between;
   justify-items: space-between;
 }
+.form-error {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px 10px;
+  color: red;
+}
 .form-error-span {
   margin: 0 0.5rem;
   color: red;
-  font-weight: bold;
 }
 @media screen and (max-width:500px) {
   .contact-group {
     padding: 0.5rem 1rem;
   }
-  .form-input, textarea {
+  .form-input,
+  textarea {
     margin: 0.5rem;
     width: 100%;
   }
