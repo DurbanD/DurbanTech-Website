@@ -103,41 +103,42 @@
         v-if="!formSubmitted && contactSelect.other"
         label="Set social as preferred contact"
         name="social"  />
-        <div id="social-contact-form">
-          <div id="service-select">
-            <FormGroup v-model="form.contact.social.service"
-            v-if="!formSubmitted && contactSelect.other"
-            type="opt"
-            class="contact-group"
-            id="contact-group-social-service"
-            :errorStatus="formErrorStatus.social"
-            :errorMessage="formErrorMsg.social"
-            :optionList="[
-              {name: 'LinkedIn', value: 'linkedin'},
-              {name: 'Twitter', value: 'twitter'},
-              {name: 'Instagram', value: 'instagram'},
-              {name: 'Facebook', value: 'facebook'},
-              {name: 'Discord', value: 'discord'},
-              {name: 'Element', value: 'element'},
-              {name: 'Other', value: 'other'},
-
-            ]" />
-
-            <input v-if="form.contact.social.service==='other' && contactSelect.other && !formSubmitted"
-            v-model="form.contact.social.namedService"
-            id="other-contact-input"
-            placeholder="Service Name" >
-          </div>
-
-          <FormGroup v-model="form.contact.social.name"
+        <!-- <div id="social-contact-form"> -->
+        <div id="service-select">
+          <FormGroup v-model="form.contact.social.service"
           v-if="!formSubmitted && contactSelect.other"
-          type="text"
-          placeholder="Username or ID"
+          type="opt"
           class="contact-group"
-          id="contact-group-social-name"
+          id="contact-group-social-service"
+          label="Service Name"
           :errorStatus="formErrorStatus.social"
-          :errorMessage="formErrorMsg.social" />
+          :errorMessage="formErrorMsg.social"
+          :optionList="[
+            {name: 'LinkedIn', value: 'linkedin'},
+            {name: 'Twitter', value: 'twitter'},
+            {name: 'Instagram', value: 'instagram'},
+            {name: 'Facebook', value: 'facebook'},
+            {name: 'Discord', value: 'discord'},
+            {name: 'Element', value: 'element'},
+            {name: 'Other', value: 'other'},
+
+          ]" />
+          <input v-if="form.contact.social.service==='other' && contactSelect.other"
+          v-model="form.contact.social.namedService"
+          id="other-contact-input"
+          placeholder="Service Name" >
         </div>
+
+        <FormGroup v-model="form.contact.social.name"
+        v-if="!formSubmitted && contactSelect.other"
+        type="text"
+        placeholder="Username or ID"
+        class="contact-group"
+        id="contact-group-social-name"
+        label="Service ID"
+        :errorStatus="formErrorStatus.social"
+        :errorMessage="formErrorMsg.socialID" />
+        <!-- </div> -->
       </div>
 
       <!-- Message Input -->
@@ -203,7 +204,9 @@ const ContactForm = Vue.extend({
         phone: '10 Digits - (555) 123 - 1234',
         email: 'example@email.com',
         message: 'Message is required',
-        social: 'Service name and contact ID'
+        social: 'Name of service required',
+        socialID: 'Username or ID required',
+        null: ''
       },
       contactSelect: {
         phone: true,
@@ -214,7 +217,7 @@ const ContactForm = Vue.extend({
       contactSelectHead: 'Contact Type',
       contactSelectTextPhone: 'Phone',
       contactSelectTextEmail: 'Email',
-      contactSelectTextOther: 'Other',
+      contactSelectTextOther: 'Social',
       checkmarkConfirm: '&#10003;',
       errorMarkerText: '*',
       submitBtnText: 'Send',
@@ -425,7 +428,8 @@ export default ContactForm
   padding: 0;
   margin: 0;
 }
-#contact-form, #form-submit-success {
+#contact-form,
+#form-submit-success {
     background: radial-gradient(150% 80%, var(--primary-light-semitransparent), var(--primary-light-transparent)), var(--grey-transparent);
     border: 2px solid black;
     border-radius: 10px;
@@ -538,11 +542,12 @@ export default ContactForm
 }
 #contact-group-social-service {
   border-bottom: 0;
-  margin-left: 2rem;
 }
 #contact-group-social-name {
   margin: 0;
-  padding: 0 0 1rem 2rem;
+  /* padding: 0; */
+  /* padding-bottom: 1rem; */
+  padding: 0 1rem 1rem 1rem;
 }
 #social-contact-form {
   display: flex;
@@ -551,6 +556,8 @@ export default ContactForm
   align-content: flex-start;
   align-items: flex-start;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
 #service-select{
   width: 100%;
@@ -558,12 +565,19 @@ export default ContactForm
   flex-direction: column;
   justify-content: flex-start;
   align-content: flex-start;
-  align-items: center;
-  margin-top: 1rem;
+  align-items: flex-start;
+  /* margin-top: 1rem; */
+  /* margin-bottom: 0.5rem */
 }
 #other-contact-input {
+  width: 35%;
+  min-width: 100px;
   border: 1px solid black;
   padding: 2px 5px;
+  /* margin: 0 2rem; */
+  margin-bottom: 0.5rem;
+  margin-left: 2rem;
+  border-radius: 3px;
 }
 .contactContainer {
   display: flex;

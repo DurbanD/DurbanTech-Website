@@ -16,9 +16,9 @@
     <div id="form-option-container" v-if="isOptionSelect">
       <select v-if="isOptionSelect" id="form-select" :value="value" @change="$emit('input', $event.target.value)">
         <option value="" selected>{{ optionSelectText }}</option>
-        <option v-for="opt in optionList" id="form-select-options" :key="opt.value" :value="opt.value">{{ opt.name }}</option>
+        <option v-for="opt in optionList" class="form-select-options" :key="opt.value" :value="opt.value">{{ opt.name }}</option>
       </select>
-      <p v-if="errorStatus" class="form-error">{{ errorMessage }}</p>
+      <p v-if="errorStatus && !label" class="form-error">{{ errorMessage }}</p>
     </div>
 
     <textarea
@@ -68,8 +68,12 @@ export default FormGroup
 </script>
 
 <style scoped>
+*{
+  padding: 0;
+  margin: 0;
+}
 .contact-group {
-    padding: 1rem 2rem;
+    padding: 1rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -93,19 +97,18 @@ export default FormGroup
 textarea {
     width: 90%;
     border: 1px solid black;
-    margin: 1rem 0 0 1rem;
+    margin: 0.5rem 0 0 1rem;
     border-radius: 3px;
     padding: 2px 5px;
 }
 #form-select {
-  border: 0;
   width: 30%;
   min-width: 100px;
-  padding: 1px 5px;
-  margin: 0;
-  margin-left: 1rem 0 0 1rem;
+  padding: 2px;
+  margin: 0 1rem;
+  border: 1px solid black;
 }
-#form-select-options {
+.form-select-options {
   padding: 1px 5px;
   margin: 0;
 }
@@ -117,6 +120,11 @@ textarea {
     overflow: auto;
     padding: 8px;
 }
+#form-option-container {
+  width: 90%;
+  padding: 0;
+  /* border: 2px solid black; */
+}
 .form-label-container,
 #form-option-container {
   width: 100%;
@@ -125,6 +133,7 @@ textarea {
   align-items: center;
   justify-content: space-between;
   justify-items: space-between;
+  /* border: 2px solid black; */
 }
 .form-error {
   border: 1px solid black;
