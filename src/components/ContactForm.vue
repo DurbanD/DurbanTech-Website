@@ -545,8 +545,6 @@ export default ContactForm
 }
 #contact-group-social-name {
   margin: 0;
-  /* padding: 0; */
-  /* padding-bottom: 1rem; */
   padding: 0 1rem 1rem 1rem;
 }
 #social-contact-form {
@@ -566,15 +564,12 @@ export default ContactForm
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  /* margin-top: 1rem; */
-  /* margin-bottom: 0.5rem */
 }
 #other-contact-input {
   width: 35%;
   min-width: 100px;
   border: 1px solid black;
   padding: 2px 5px;
-  /* margin: 0 2rem; */
   margin-bottom: 0.5rem;
   margin-left: 2rem;
   border-radius: 3px;

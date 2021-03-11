@@ -49,7 +49,6 @@ export default Footer
     overflow: hidden;
 }
 .footer-box {
-    /* height: 90%; */
     width:auto;
     box-sizing: border-box;
     display: flex;

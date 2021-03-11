@@ -33,7 +33,6 @@ export default PreferredContactCheckBox
   padding: 0;
   margin: 0;
   height: auto;
-  /* border: 2px solid black; */
 }
 .pref-label {
   color: var(--font-dark);

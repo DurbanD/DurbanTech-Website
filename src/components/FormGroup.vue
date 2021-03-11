@@ -123,7 +123,6 @@ textarea {
 #form-option-container {
   width: 90%;
   padding: 0;
-  /* border: 2px solid black; */
 }
 .form-label-container,
 #form-option-container {
@@ -133,7 +132,6 @@ textarea {
   align-items: center;
   justify-content: space-between;
   justify-items: space-between;
-  /* border: 2px solid black; */
 }
 .form-error {
   border: 1px solid black;
